@@ -1,91 +1,88 @@
+import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
-  NativeBaseProvider,
-  Input,
-  Stack,
-  Icon,
-  Pressable,
-  Button,
+  StyleSheet,
   Text,
-} from "native-base";
-import { MaterialIcons } from "@expo/vector-icons";
-import MainScreen from "../Main/MainScreen";
+  View,
+  Image,
+  TextInput,
+  Button,
+  TouchableOpacity,
+  // StatusBar as RNStatusBar,
+} from "react-native";
 
-const LoginScreen = ({ navigation }) => {
-  const [show, setShow] = React.useState(false);
-  const [isLightTheme, setIsLightTheme] = useState(true);
-
-  const toggleTheme = () => {
-    setIsLightTheme(!isLightTheme);
-  };
-
-  const getBackgroundColor = () => {
-    return isLightTheme ? "white" : "black";
-  };
-
+const LoginScreen = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   return (
-    <NativeBaseProvider>
-      <Stack
-        space={4}
-        w="100%"
-        top={"30%"}
-        alignItems="center"
-        _light={{
-          bg: getBackgroundColor(), // Set background color based on the theme
-        }}
-        _dark={{
-          bg: getBackgroundColor(), // Set background color based on the theme
-        }}
-      >
-        <Input
-          size="lg"
-          placeholder="lg Input"
-          variant="rounded"
-          w={{
-            base: "70%",
-            md: "25%",
-          }}
-          InputLeftElement={
-            <Icon
-              as={<MaterialIcons name="person" />}
-              size={5}
-              ml="2"
-              color="muted.400"
-            />
-          }
-          placeholder="Name"
+    <View style={styles.container}>
+      {/* <RNStatusBar hidden={true} /> */}
+      <Image style={styles.image} />
+      <StatusBar style="auto" />
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.TextInput}
+          placeholder="Email."
+          placeholderTextColor="#003f5c"
+          onChangeText={(email) => setEmail(email)}
         />
-        <Input
-          variant="rounded"
-          size="lg"
-          placeholder="lg Input"
-          w={{
-            base: "70%",
-            md: "25%",
-          }}
-          type={show ? "text" : "password"}
-          InputRightElement={
-            <Pressable onPress={() => setShow(!show)}>
-              <Icon
-                as={
-                  <MaterialIcons
-                    name={show ? "visibility" : "visibility-off"}
-                  />
-                }
-                size={5}
-                mr="2"
-                color="muted.400"
-              />
-            </Pressable>
-          }
-          placeholder="Password"
+      </View>
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.TextInput}
+          placeholder="Password."
+          placeholderTextColor="#003f5c"
+          secureTextEntry={true}
+          onChangeText={(password) => setPassword(password)}
         />
-        <Button onPress={toggleTheme}>
-          <Text>Toggle Theme ({isLightTheme ? "Light" : "Dark"})</Text>
-        </Button>
-      </Stack>
-    </NativeBaseProvider>
+      </View>
+      <TouchableOpacity style={styles.loginBtn}>
+        <Text style={styles.loginText}>LOGIN</Text>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Text style={styles.forgot_button}>Forgot Password?</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#00563B",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  image: {
+    marginBottom: 40,
+  },
+  inputView: {
+    backgroundColor: "gray",
+    borderRadius: 30,
+    width: "75%",
+    height: 60,
+    marginBottom: 20,
+    // alignItems: "left",
+    paddingLeft: 20,
+  },
+  TextInput: {
+    height: 60,
+    flex: 1,
+    padding: 5,
+  },
+  forgot_button: {
+    height: 30,
+    marginTop: 20,
+  },
+  loginBtn: {
+    width: "75%",
+    borderRadius: 30,
+    height: 55,
+    alignItems: "center",
+    // paddingLeft: 120,
+    justifyContent: "center",
+    marginTop: 5,
+    backgroundColor: "gray",
+  },
+});
 
 export default LoginScreen;
