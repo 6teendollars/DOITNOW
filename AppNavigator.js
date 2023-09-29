@@ -1,7 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import LoginScreen from "./pages/Login/LoginScreen";
-import RegistrationScreen from "./pages/Registration/RegistrationScreen";
-import MainScreen from "./pages/Main/MainScreen";
+import LoginScreen from "./src/pages/Login/LoginScreen";
+import RegistrationScreen from "./src/pages/Registration/RegistrationScreen";
+import MainScreen from "./src/pages/Main/MainScreen";
 
 const Stack = createStackNavigator();
 
@@ -15,7 +15,13 @@ const AppNavigator = () => {
           headerShown: false, // Hide the header on the "Login" screen
         }}
       />
-      <Stack.Screen name="Registration" component={RegistrationScreen} />
+      <Stack.Screen
+        name="Registration"
+        component={RegistrationScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
       <Stack.Screen name="Main" component={MainScreen} />
     </Stack.Navigator>
   );
