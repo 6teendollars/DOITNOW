@@ -6,12 +6,14 @@
   "scripts": {
     "start": "expo start",
     "predeploy": "npm run build",
-    "deploy":"gh-pages -d build",
+    "deploy": "gh-pages -d build",
+    "build": "expo build:web",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo/webpack-config": "^19.0.0",
     "@react-navigation/native": "^6.1.8",
     "@react-navigation/native-stack": "^6.9.14",
     "@react-navigation/stack": "^6.3.18",
@@ -24,11 +26,13 @@
     "react-native-linear-gradient": "^2.8.3",
     "react-native-reanimated": "^3.5.4",
     "react-native-svg": "^13.14.0",
+    "react-native-web": "~0.19.6",
     "styled-components": "^6.0.8"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
-    "gh-pages": "^6.0.0"
+    "gh-pages": "^6.0.0",
+    "webpack-bundle-analyzer": "^4.9.1"
   },
   "private": true
 }
